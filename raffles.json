@@ -1,0 +1,13 @@
+{
+  "raffles": [
+    {
+      "name": "Çekiliş 1",
+      "caption": "Büyük ödül için çekilişe katılın!",
+      "photo": "https://example.com/raffle_image.jpg",
+      "date": "2024-12-31 23:59:59",
+      "required_points": 50,
+      "gif": "https://example.com/winner_gif.gif",
+      "winners_count": 3
+    }
+  ]
+}

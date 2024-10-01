@@ -1,0 +1,16 @@
+{
+  "admins": [
+    {
+      "user_id": "1356415148",
+      "name": "Swag1",
+      "emoji": "👑",
+      "color": "#FF5733"
+    },
+    {
+      "user_id": "1356415142",
+      "name": "Admin2",
+      "emoji": "👑",
+      "color": "#33FF57"
+    }
+  ]
+}
