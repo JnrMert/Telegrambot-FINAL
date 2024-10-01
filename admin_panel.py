@@ -24,7 +24,7 @@ def admin_panel(update: Update, context: CallbackContext) -> None:
 
     # Admin panelini grupta sadece adminlerin kullanabileceği şekilde gönder
     keyboard = [
-        [InlineKeyboardButton("🗑 Mesajları Sil", callback_data='delete_messages')],
+        [InlineKeyboardButton("🗑 Son 5 Mesajı Sil", callback_data='delete_messages')],
         [InlineKeyboardButton("🔒 Chat'i Kitle", callback_data='lock_chat')],
         [InlineKeyboardButton("🔓 Chat'i Aç", callback_data='unlock_chat')],
         [InlineKeyboardButton("⚠️ Uyarıları Sıfırla", callback_data='reset_warnings')],  # Yeni buton
