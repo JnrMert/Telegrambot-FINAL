@@ -2,7 +2,7 @@ import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, CallbackQueryHandler
 from config import TOKEN, ADMINS, ALLOWED_GROUPS
 from commands.db_management import increment_warning, get_warnings, blacklist_user, reset_warnings
-from commands.moderation import mute_user, unmute_user, ban_user, detect_swear, handle_invalid_command
+from commands.moderation import mute_user, unmute_user, ban_user, detect_swear, handle_invalid_command, detect_capslock
 from commands.sites import sites_command, vip_command, bonus_command
 from commands.report import report_command
 from commands.reputation import get_reputation, update_reputation
@@ -27,7 +27,13 @@ def main():
     # Komut işleyicileri
     dispatcher.add_handler(CommandHandler("admin", admin_panel))
     dispatcher.add_handler(CallbackQueryHandler(button_callback))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, detect_swear), group=0)
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, detect_capslock), group=1)
+
+
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, on_message))
     
+    dispatcher.add_handler(MessageHandler(Filters.chat_type.groups & Filters.text & ~Filters.command, track_messages))
     # Moderasyon komutları
     dispatcher.add_handler(CommandHandler("ban", ban_user))
     dispatcher.add_handler(CommandHandler("sus", mute_user, pass_args=True))
@@ -43,11 +49,8 @@ def main():
     dispatcher.add_handler(CommandHandler("cekilis", join_raffle))
 
 #  Flood kontrol işlevini ekleyin
-    dispatcher.add_handler(MessageHandler(Filters.text & Filters.chat_type.groups, on_message))
     # Mesaj işleme ve küfür tespiti
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, detect_swear))
     # Mesaj takibi
-    dispatcher.add_handler(MessageHandler(Filters.chat_type.groups & Filters.text & ~Filters.command, track_messages))
     dispatcher.add_handler(MessageHandler(Filters.chat_type.groups & Filters.text, delete_messages))
     dispatcher.add_handler(MessageHandler(Filters.chat_type.groups & Filters.command, delete_message_option))
     

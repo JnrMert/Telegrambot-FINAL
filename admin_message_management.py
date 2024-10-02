@@ -5,14 +5,12 @@ import config # config.py dosyasını import ediyoruz
 from config import ALLOWED_GROUPS
 
 
-logger = logging.getLogger(__name__)# Üyelerin mesaj gönderme geçmişi (flood takibi için)
+logger = logging.getLogger(__name__)
 
 def track_messages(update: Update, context: CallbackContext):
     """Gelen mesajları takip eder ve son 10 mesajı saklar."""
     chat_id = update.message.chat_id
     user_id = update.message.from_user.id
-
-    logger.debug(f"Mesaj alındı: {update.message.text} from user: {user_id} in chat: {chat_id}")
 
     if update.message and user_id != context.bot.id:  # Botun kendi mesajlarını hariç tut
         # Mesajları context üzerinden saklıyoruz

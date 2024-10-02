@@ -36,9 +36,9 @@ settings = {
 spam_keywords_path = os.path.join(BASE_DIR, 'spam_keywords.json')
 with open(spam_keywords_path, 'r') as f:
     spam_keywords_data = json.load(f)
-
 SPAM_KEYWORDS = spam_keywords_data['keywords']
-print(SPAM_KEYWORDS)
+
+
 # Load Blacklist
 blacklist_path = os.path.join(BASE_DIR, 'blacklist.json')
 with open(blacklist_path, 'r') as f:

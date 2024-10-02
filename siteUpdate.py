@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import os
+import random
 
 # Web sayfasının URL'si
 url = "https://kazananadam.site/"
@@ -12,30 +13,40 @@ soup = BeautifulSoup(response.content, "html.parser")
 
 # JSON dosyasının mevcut olup olmadığını kontrol edelim
 if os.path.exists("urls.json"):
-    # Mevcut JSON dosyasını okuyalım
     with open("urls.json", "r") as json_file:
         urls_data = json.load(json_file)
 else:
-    # Eğer dosya yoksa, yeni bir yapı başlatıyoruz
     urls_data = {"sites": [], "vips": []}
 
 # Mevcut siteleri ve VIP siteleri tamamen temizleyelim
 urls_data["sites"] = []
 urls_data["vips"] = []
 
+# Emojiler listesi
+emojis = ["⭐", "🌟", "🔥", "🏆", "🥇", "⚜️", "°•", "𓆩🖤𓆪", "𓆰♕𓆪", "♛", "✨", "🚨", "🍁", "🎃", "🍂", "🎁", "🛒", "💸", "💰", "👑", "💥", "💣", "🚀"]
+
+# Simetrik emoji ekleyerek başlıkları süsleyen fonksiyon
+def decorate_title_with_emojis(title):
+    emoji_count = random.choice([1, 2, 3])  # Rastgele 1, 2 veya 3 emoji kullan
+    selected_emojis = random.sample(emojis, emoji_count)  # Rastgele emojileri seç
+    decorated_title = f"{''.join(selected_emojis)} {title} {''.join(reversed(selected_emojis))}"  # Simetrik yerleşim
+    return decorated_title
+
 # sm_Container class'lı (normal siteler) elementleri bulalım
 sm_containers = soup.find_all("div", class_="sm_Container")
 
 for container in sm_containers:
-    # <a> etiketindeki href (url) ve title (site adı) değerlerini alalım
     a_tag = container.find("a")
     if a_tag:
-        site_name = a_tag.get("title")
+        site_name = a_tag.get("title") or "Sponsor Reklam Alanı"  # Eğer title boşsa, "Sponsor Reklam Alanı" kullan
         site_url = url + a_tag.get("href")
+        
+        # Başlığı süsle
+        decorated_site_name = decorate_title_with_emojis(site_name)
         
         # Yeni siteyi ekleyelim
         urls_data["sites"].append({
-            "name": site_name,
+            "name": decorated_site_name,
             "url": site_url
         })
 
@@ -43,15 +54,17 @@ for container in sm_containers:
 xs_containers = soup.find_all("div", class_="xs_Container")
 
 for container in xs_containers:
-    # <a> etiketindeki href (url) ve title (VIP site adı) değerlerini alalım
     a_tag = container.find("a")
     if a_tag:
-        vip_name = a_tag.get("title")
+        vip_name = a_tag.get("title") or "Sponsor Reklam Alanı"  # Eğer title boşsa, "Sponsor Reklam Alanı" kullan
         vip_url = url + a_tag.get("href")
+        
+        # Başlığı süsle
+        decorated_vip_name = decorate_title_with_emojis(vip_name)
         
         # Yeni VIP siteyi ekleyelim
         urls_data["vips"].append({
-            "name": vip_name,
+            "name": decorated_vip_name,
             "url": vip_url
         })
 
