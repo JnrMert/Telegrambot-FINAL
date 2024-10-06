@@ -1,9 +1,8 @@
-import logging
+
 from telegram import Update
 from telegram.ext import CallbackContext
 import config
 
-logger = logging.getLogger(__name__)
 
 def report_command(update: Update, context: CallbackContext):
     if update.message.reply_to_message:

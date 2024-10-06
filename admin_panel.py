@@ -4,6 +4,7 @@ from telegram.ext import CallbackContext
 import config
 from commands.db_management import reset_all_warnings
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def admin_panel(update: Update, context: CallbackContext) -> None:
@@ -24,7 +25,6 @@ def admin_panel(update: Update, context: CallbackContext) -> None:
 
     # Admin panelini grupta sadece adminlerin kullanabileceği şekilde gönder
     keyboard = [
-        [InlineKeyboardButton("🗑 Son 5 Mesajı Sil", callback_data='delete_messages')],
         [InlineKeyboardButton("🔒 Chat'i Kitle", callback_data='lock_chat')],
         [InlineKeyboardButton("🔓 Chat'i Aç", callback_data='unlock_chat')],
         [InlineKeyboardButton("⚠️ Uyarıları Sıfırla", callback_data='reset_warnings')],  # Yeni buton
@@ -44,13 +44,8 @@ def button_callback(update: Update, context: CallbackContext) -> None:
 
     if user_id in config.ADMINS:
         logger.info(f"Admin buton callback çalıştırıldı. Callback data: {query.data}")
-
-        if query.data == 'delete_messages':
-            from admin_message_management import delete_messages
-            delete_messages(update, context)
-            _delete_bot_message(update, context)
-
-        elif query.data == 'lock_chat':
+        
+        if query.data == 'lock_chat':
             from admin_chat_management import lock_chat
             lock_chat(update, context)
             _delete_bot_message(update, context)

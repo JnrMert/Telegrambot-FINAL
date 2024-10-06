@@ -8,6 +8,7 @@ from config import settings
 data = []
 
 # Logger oluşturma
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Mesaj silme işlevi
@@ -60,7 +61,7 @@ def on_message(update, context):
     Mesaj geldiğinde flood kontrol mekanizmasını başlatan işlev.
     """
     message = update.message
-    if message.chat.type == "supergroup":
+    if message.chat.type in ["supergroup", "group"]:
         user_id = message.from_user.id
         chat_id = message.chat.id
         msg_id = message.message_id

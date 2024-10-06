@@ -1,4 +1,3 @@
-import logging
 import subprocess
 import sys
 import os
@@ -6,37 +5,48 @@ import time
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 import pytz
-from raffles import announce_winners
-from automesaj import setup_auto_message_scheduler  # Otomatik mesajları dahil et
+from commands.db_management import reset_warnings  # reset_warnings fonksiyonunu içe aktar
 
-logger = logging.getLogger(__name__)
 
-# Site güncelleme işlemi
+# Site güncelleme işlemi (sadece program başında çalışacak)
 def run_sites_update():
-    logger.info("sitesUpdate.py çalıştırılıyor...")
     subprocess.Popen([sys.executable, "sitesUpdate.py"])
-    logger.info("Bot yeniden başlatılıyor...")
+
+
+# Botu yeniden başlatma işlemi
+def restart_bot():
+    print("Bot yeniden başlatılıyor...")
     time.sleep(2)
-    os.execv(sys.executable, [sys.executable] + sys.argv)
+    os.execv(sys.executable, [sys.executable] + sys.argv)  # Botu yeniden başlat
 
-
-# Kazananları duyurma işlemi
-#def check_raffle_winners():
-#    logger.info("Kazananlar kontrol ediliyor...")
- #   announce_winners(None, 1)
 
 def setup_scheduler():
     scheduler = BackgroundScheduler(timezone=pytz.utc)
 
     try:
-        # 24 saatte bir sitesUpdate.py dosyasını çalıştırma
-        scheduler.add_job(run_sites_update, trigger=IntervalTrigger(hours=24, timezone=pytz.utc))
+        # 24 saatte bir reset_warnings çalıştırma
+        scheduler.add_job(reset_warnings, trigger=IntervalTrigger(hours=24, timezone=pytz.utc))
 
-        # Otomatik mesajlar için zamanlayıcıyı başlatma
-        setup_auto_message_scheduler()
-
-        # Zamanlayıcıyı başlatma
+        # Zamanlayıcıyı başlat
         scheduler.start()
-        logger.info("Scheduler başlatıldı, görevler zamanlandı.")
     except Exception as e:
-        logger.error(f"Scheduler başlatılırken hata oluştu: {e}")
+        pass
+
+
+if __name__ == '__main__':
+    # İlk olarak sitesUpdate.py'yi çalıştırma
+    run_sites_update()
+
+    # Zamanlayıcıyı kur
+    setup_scheduler()
+
+    # 24 saat sonra botu yeniden başlatmak için zamanlayıcı veya manuel tetikleme eklenebilir
+    print("Bot çalışıyor...")
+
+    # Botunuzu burada çalıştırabilirsiniz, örneğin:
+    # updater.start_polling()
+    # updater.idle()
+
+    # 24 saatte bir botu manuel olarak yeniden başlatmak için zamanlayıcı kullanabilirsiniz
+    time.sleep(24 * 3600)
+    restart_bot()
