@@ -1,4 +1,5 @@
 import logging
+import time
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, CallbackQueryHandler
 from config import TOKEN, ADMINS, ALLOWED_GROUPS
@@ -41,17 +42,16 @@ def main():
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, mute_user_for_foreign_language),group=3)
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, on_message),group=4)
     dispatcher.add_handler(MessageHandler(Filters.regex(r'^!site$'), site_button_command), group=6)
+    dispatcher.add_handler(MessageHandler(Filters.text & Filters.regex(r'^\d+$'), process_sponsor_sil),group=7)  # Sponsor silme adımları
+    dispatcher.add_handler(MessageHandler(Filters.text, process_sponsor_input),group=8)  # Sponsor ekleme adımları
     
     dispatcher.add_handler(CommandHandler("admin", admin_panel))
     dispatcher.add_handler(CallbackQueryHandler(button_callback))
-
-    # Komutlar
     dispatcher.add_handler(CommandHandler("panel", show_sponsor_menu))  # Admin panelini açan komut
     dispatcher.add_handler(CommandHandler("sponsor_ekle", sponsor_ekle))  # Sponsor ekleme komutu
     dispatcher.add_handler(CommandHandler("sponsor_sil", sponsor_sil))  # Sponsor silme komutu
     # Kullanıcı girdilerini işleyen handler'lar
-    dispatcher.add_handler(MessageHandler(Filters.text & Filters.regex(r'^\d+$'), process_sponsor_sil))  # Sponsor silme adımları
-    dispatcher.add_handler(MessageHandler(Filters.text, process_sponsor_input))  # Sponsor ekleme adımları
+    
 
     dispatcher.add_handler(CommandHandler("ban", ban_user))
     dispatcher.add_handler(CommandHandler("sus", mute_user, pass_args=True))

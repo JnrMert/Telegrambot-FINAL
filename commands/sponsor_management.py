@@ -26,16 +26,8 @@ def is_admin(user_id):
 def show_sponsor_menu(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id
 
-    # Admin kontrolü
-    if not is_admin(user_id):
-        update.message.reply_text("Bu işlemi sadece adminler gerçekleştirebilir.")
-        return
-
-    # Özel mesaj kontrolü
-    if update.message.chat.type != "private":
-        update.message.reply_text("Bu işlemi yalnızca özel mesajda gerçekleştirebilirsiniz.")
-        return
-
+   
+    
     message = """
     Admin Paneli:
     1. Sponsor eklemek için: /sponsor_ekle
@@ -49,15 +41,9 @@ def show_sponsor_menu(update: Update, context: CallbackContext):
 def sponsor_ekle(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id
 
-    # Admin kontrolü
-    if not is_admin(user_id):
-        update.message.reply_text("Bu işlemi sadece adminler gerçekleştirebilir.")
-        return
+   
 
-    # Özel mesaj kontrolü
-    if update.message.chat.type != "private":
-        update.message.reply_text("Bu işlemi yalnızca özel mesajda gerçekleştirebilirsiniz.")
-        return
+    
 
     update.message.reply_text("Lütfen eklemek istediğiniz sponsorun adını girin:")
     context.user_data['add_sponsor_step'] = 'name'
@@ -66,15 +52,9 @@ def sponsor_ekle(update: Update, context: CallbackContext):
 def process_sponsor_input(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id
 
-    # Admin kontrolü
-    if not is_admin(user_id):
-        update.message.reply_text("Bu işlemi sadece adminler gerçekleştirebilir.")
-        return
+    
 
-    # Özel mesaj kontrolü
-    if update.message.chat.type != "private":
-        update.message.reply_text("Bu işlemi yalnızca özel mesajda gerçekleştirebilirsiniz.")
-        return
+    
 
     if context.user_data.get('add_sponsor_step') == 'name':
         context.user_data['new_sponsor_name'] = update.message.text
@@ -95,15 +75,9 @@ def process_sponsor_input(update: Update, context: CallbackContext):
 def sponsor_sil(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id
 
-    # Admin kontrolü
-    if not is_admin(user_id):
-        update.message.reply_text("Bu işlemi sadece adminler gerçekleştirebilir.")
-        return
+    
 
-    # Özel mesaj kontrolü
-    if update.message.chat.type != "private":
-        update.message.reply_text("Bu işlemi yalnızca özel mesajda gerçekleştirebilirsiniz.")
-        return
+    
 
     sponsor_data = load_sponsor_data()
     if not sponsor_data['sponsors']:
@@ -116,17 +90,7 @@ def sponsor_sil(update: Update, context: CallbackContext):
 
 # Sponsor silme adımları
 def process_sponsor_sil(update: Update, context: CallbackContext):
-    user_id = update.message.from_user.id
-
-    # Admin kontrolü
-    if not is_admin(user_id):
-        update.message.reply_text("Bu işlemi sadece adminler gerçekleştirebilir.")
-        return
-
-    # Özel mesaj kontrolü
-    if update.message.chat.type != "private":
-        update.message.reply_text("Bu işlemi yalnızca özel mesajda gerçekleştirebilirsiniz.")
-        return
+    user_id = update.message.from_user.idü 
 
     if context.user_data.get('delete_sponsor_step') == 'choose':
         try:

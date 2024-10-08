@@ -9,7 +9,7 @@ DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://telegrammodbot_user:b0yP1
 
 BAN_GIF_URL = os.getenv('BAN_GIF_URL', 'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTlxZGt5bGJpdWdhNHY5dDkyNDRmdGhqd2RyMnJ6bnZldDViMzJhcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fe4dDMD2cAU5RfEaCU/giphy.gif')
 
-ALLOWED_GROUPS = [-1002196403922, -1002458297138]  
+ALLOWED_GROUPS = [-1002196403922, -1002458297138, -1001150697718]  
 urls_path = os.path.join(BASE_DIR, 'urls.json')
 with open(urls_path, 'r') as f:
     url_data = json.load(f)

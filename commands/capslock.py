@@ -15,7 +15,15 @@ def is_capslock(message_text):
         return False
     upper_case_count = sum(1 for c in message_text if c.isupper())
     return upper_case_count / len(message_text) > 0.7
-
+def is_user_admin(update: Update, user_id: int):
+    """
+    Kullanıcının yönetici olup olmadığını kontrol eder.
+    """
+    chat_administrators = update.effective_chat.get_administrators()
+    for admin in chat_administrators:
+        if admin.user.id == user_id:
+            return True
+    return False
 def correct_capslock(message_text):
     """
     Mesajı düzelterek büyük harfleri küçüğe çevirir, cümleleri düzgün hale getirir.
@@ -30,6 +38,10 @@ def detect_capslock(update: Update, context: CallbackContext):
     first_name = update.message.from_user.first_name
     username = update.message.from_user.username
     message_text = update.message.text
+
+    # Kullanıcının yönetici olup olmadığını kontrol ediyoruz
+    if is_user_admin(update, user_id):
+        return  # Eğer kullanıcı yönetici ise, fonksiyonu sonlandırıyoruz.
 
     if is_capslock(message_text):
         try:
