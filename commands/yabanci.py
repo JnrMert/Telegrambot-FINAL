@@ -29,11 +29,11 @@ def mute_user_for_foreign_language(update: Update, context: CallbackContext):
             chat_id=chat_id,
             user_id=user.id,
             permissions=permissions,
-            until_date=time.time() + 900  # 15 dakika (900 saniye)
+            until_date=time.time() + 90000  # 15 dakika (900 saniye)
         )
 
         # Kullanıcıya bildirim gönder
-        update.message.reply_text(f"{user.first_name}, yabancı dilde mesaj gönderdiğiniz için 15 dakika boyunca susturuldunuz.")
+        update.message.reply_text(f"{user.first_name}, yabancı dilde mesaj gönderdiğiniz için 1 gün boyunca susturuldunuz.")
         
         # Mesajı sil
         context.bot.delete_message(chat_id=chat_id, message_id=update.message.message_id)
