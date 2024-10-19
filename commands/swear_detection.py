@@ -67,37 +67,4 @@ def detect_swear(update: Update, context: CallbackContext):
 
     # Link içeriyor mu kontrol et (normal üyeler için)
     if is_link(message_text):
-        try:
-            # Admin kontrolü (linklerde de admin kontrolü sağlandı)
-            if chat_member.status in ['administrator', 'creator']:
-                return  # Eğer adminse hiçbir işlem yapma
-
-            # Link içeren mesajı sil
-            context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.message.message_id)
-            increment_warning(user_id)
-            warnings = get_warnings(user_id)
-
-            user_mention = f"@{username}" if username else first_name
-            if warnings == 1:
-                direct_mute_user(update, context, user_id, 60)  # 1 dakika susturma
-                context.bot.send_message(
-                    chat_id=update.effective_chat.id, 
-                    text=f"⚠️ {user_mention}, bu senin {warnings}. uyarın. Şu an 1 dakika için susturuldun.❌"
-                )
-            elif warnings >= 4:
-                context.bot.kick_chat_member(chat_id=update.effective_chat.id, user_id=user_id)
-                context.bot.send_message(
-                    chat_id=update.effective_chat.id, 
-                    text=f"🚫 {user_mention}, bu senin {warnings}. uyarın ve link paylaşımı nedeniyle yasaklandın."
-                )
-                blacklist_user(user_id)
-                reset_warnings(user_id)
-            else:
-                mute_durations = [300, 600, 1800]
-                direct_mute_user(update, context, user_id, mute_durations[warnings - 1])
-                context.bot.send_message(
-                    chat_id=update.effective_chat.id, 
-                    text=f"⚠️ {user_mention}, bu senin {warnings}. uyarın. Şu an {mute_durations[warnings - 1]} saniye için susturuldun.❌"
-                )
-        except Exception as e:
-            print(f"Hata: {e}")
+         return
