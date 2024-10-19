@@ -21,8 +21,10 @@ def detect_swear(update: Update, context: CallbackContext):
     username = update.message.from_user.username
     message_text = update.message.text.lower()
 
-    if user_id in config.ADMINS:
-        return  # Adminse işlem yapılmaz
+    # Admin kontrolü
+    chat_member = context.bot.get_chat_member(chat_id=update.effective_chat.id, user_id=user_id)
+    if chat_member.status in ['administrator', 'creator']:
+        return  # Eğer adminse hiçbir işlem yapma
 
     # Kötü kelimenin tek başına kullanılıp kullanılmadığını kontrol et
     for keyword in config.SPAM_KEYWORDS:
@@ -40,7 +42,7 @@ def detect_swear(update: Update, context: CallbackContext):
                     context.bot.send_animation(
                         chat_id=update.effective_chat.id, 
                         animation='https://media1.tenor.com/m/Si1N3dQSEhQAAAAC/tamam-baba-sakinles.gif',
-                        caption=f"⚠️ {user_mention}, bu senin {warnings}. uyarın. 1 dakika için susturuldun.❌"
+                        caption=f"⚠️ {user_mention}, bu senin {warnings}. uyarın. 1 dakika için susturuldun. (Bad Word)❌"
                     )
                 elif warnings >= 4:
                     context.bot.kick_chat_member(chat_id=update.effective_chat.id, user_id=user_id)
@@ -60,12 +62,16 @@ def detect_swear(update: Update, context: CallbackContext):
                         caption=f"⚠️ {user_mention}, bu senin {warnings}. uyarın. {mute_durations[warnings - 1]} saniye için susturuldun.❌"
                     )
             except Exception as e:
-                pass
+                print(f"Hata: {e}")
             break
 
     # Link içeriyor mu kontrol et (normal üyeler için)
     if is_link(message_text):
         try:
+            # Admin kontrolü (linklerde de admin kontrolü sağlandı)
+            if chat_member.status in ['administrator', 'creator']:
+                return  # Eğer adminse hiçbir işlem yapma
+
             # Link içeren mesajı sil
             context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.message.message_id)
             increment_warning(user_id)
@@ -94,4 +100,4 @@ def detect_swear(update: Update, context: CallbackContext):
                     text=f"⚠️ {user_mention}, bu senin {warnings}. uyarın. Şu an {mute_durations[warnings - 1]} saniye için susturuldun.❌"
                 )
         except Exception as e:
-            pass
+            print(f"Hata: {e}")
