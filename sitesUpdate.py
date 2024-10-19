@@ -5,7 +5,7 @@ import os
 import random
 
 # Web sayfasının URL'si
-url = "https://kazananadam.site/"
+url = "https://kazananadam.xyz/"
 
 # Sayfanın HTML içeriğini çekiyoruz
 response = requests.get(url)
