@@ -11,12 +11,17 @@ Arabic_pattern = re.compile(r'[\u0600-\u06FF]')
 # Kullanıcıyı 15 dakika susturma fonksiyonu
 def mute_user_for_foreign_language(update: Update, context: CallbackContext):
     message = update.message.text
+    user = update.message.from_user
+    chat_id = update.message.chat_id
+
+    # Admin olup olmadığını kontrol et
+    chat_member = context.bot.get_chat_member(chat_id=chat_id, user_id=user.id)
+    if chat_member.status in ['administrator', 'creator']:
+        # Eğer kullanıcı admin ise işlem yapma
+        return
 
     # Eğer mesajda Rusça veya Arapça karakterler bulunuyorsa
     if Cyrillic_pattern.search(message) or Arabic_pattern.search(message):
-        user = update.message.from_user
-        chat_id = update.message.chat_id
-
         # Kullanıcıyı 15 dakika boyunca susturacak ChatPermissions
         permissions = ChatPermissions(can_send_messages=False)
 
@@ -30,7 +35,9 @@ def mute_user_for_foreign_language(update: Update, context: CallbackContext):
         # Kullanıcıya bildirim gönder
         update.message.reply_text(f"{user.first_name}, yabancı dilde mesaj gönderdiğiniz için 15 dakika boyunca susturuldunuz.")
         
+        # Mesajı sil
+        context.bot.delete_message(chat_id=chat_id, message_id=update.message.message_id)
+        
     else:
         # Eğer yabancı dil değilse, bir işlem yapma
         return
-
