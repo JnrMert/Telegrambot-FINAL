@@ -54,14 +54,10 @@ def detect_capslock(update: Update, context: CallbackContext):
 
             context.bot.send_animation(
                 chat_id=update.effective_chat.id,
-                animation='https://media1.tenor.com/m/4cKxc5jDVPgAAAAC/keyboard-caps-lock.gif',
+                animation='https://media1.tenor.com/m/dUXwQshXVnMAAAAd/caps-lock-corsair-rgb.gif',
                 caption=f"⚠️ {user_mention}, lütfen caps lock kullanmayın! 1 dakika boyunca susturuldun.❌"
             )
 
-            context.bot.send_message(
-                chat_id=update.effective_chat.id,
-                text=f"✅ Düzeltilmiş mesaj: {corrected_message}"
-            )
         except Exception as e:
             pass
     else:
