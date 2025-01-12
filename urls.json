@@ -1,138 +1,25 @@
 {
     "sites": [
-        {
-            "name": "\u2b50\ud83d\udca3 BetZula \ud83d\udca3\u2b50",
-            "url": "https://kazananadam.site/sitegit.asp?id=1189"
-        },
-        {
-            "name": "\ud83c\udf83\ud83c\udfc6 VayCasino \ud83c\udfc6\ud83c\udf83",
-            "url": "https://kazananadam.site/sitegit.asp?id=1223"
-        },
-        {
-            "name": "\ud83d\udc51\u00b0\u2022 Casinomilyon \u00b0\u2022\ud83d\udc51",
-            "url": "https://kazananadam.site/sitegit.asp?id=1203"
-        },
-        {
-            "name": "\ud80c\uddb0\u2655\ud80c\uddaa\ud83d\udca5\ud83c\udf1f TamBet \ud83c\udf1f\ud83d\udca5\ud80c\uddb0\u2655\ud80c\uddaa",
-            "url": "https://kazananadam.site/sitegit.asp?id=1168"
-        },
-        {
-            "name": "\u2728\ud83c\udf81 CasinoBonanza \ud83c\udf81\u2728",
-            "url": "https://kazananadam.site/sitegit.asp?id=1165"
-        },
-        {
-            "name": "\ud83d\ude80 MonoBahis \ud83d\ude80",
-            "url": "https://kazananadam.site/sitegit.asp?id=1170"
-        },
-        {
-            "name": "\ud83d\udcb8\ud80c\uddb0\u2655\ud80c\uddaa\ud83d\udc51 CADDEBET \ud83d\udc51\ud80c\uddb0\u2655\ud80c\uddaa\ud83d\udcb8",
-            "url": "https://kazananadam.site/sitegit.asp?id=1169"
-        },
-        {
-            "name": "\ud83c\udf42\ud83c\udfc6\ud83e\udd47 Jestbahis \ud83e\udd47\ud83c\udfc6\ud83c\udf42",
-            "url": "https://kazananadam.site/sitegit.asp?id=1171"
-        },
-        {
-            "name": "\u2728\ud83d\udd25 PusulaBet \ud83d\udd25\u2728",
-            "url": "https://kazananadam.site/sitegit.asp?id=1179"
-        },
-        {
-            "name": "\ud83d\udcb0\ud83e\udd47\ud83c\udf41 PrimeBahis \ud83c\udf41\ud83e\udd47\ud83d\udcb0",
-            "url": "https://kazananadam.site/sitegit.asp?id=1183"
-        }
+       
     ],
     "bonuses": [
-        {
-            "name": "555 Freespins CASINOBONANZA",
-            "url": "https://www.casinobonanza331.com/#/?btag=kazanan"
-        },
-        {
-            "name": "Bonus 2",
-            "url": "https://bonus2.com"
-        },
-        {
-            "name": "Bonus 3",
-            "url": "https://bonus3.com"
-        },
-        {
-            "name": "Bonus 4",
-            "url": "https://bonus4.com"
-        },
-        {
-            "name": "Bonus 5",
-            "url": "https://bonus5.com"
-        }
+      
     ],
     "images": {
         "default": "https://cdn.shopify.com/s/files/1/0533/2089/files/img-url-filter.jpg",
         "admin": "https://cdn.shopify.com/s/files/1/0533/2089/files/img-url-filter.jpg"
     },
     "captions": {
-        "sites": "\ud83c\udf10 Siteler:",
-        "bonuses": "\ud83c\udf81 Bonuslar:",
-        "vips": "\ud83c\udf81 Vip Siteler:"
+        "sites": "",
+        "bonuses": "",
+        "vips": ""
     },
     "photos": {
         "sites": "https://paulsballparks.com/img/slotsiteleri.jpg",
-        "bonuses": "https://www.papercranestore.com/image/DENEME%20BONUSU%20VEREN%20SITELER%202024.png",
-        "vips": "https://www.papercranestore.com/image/DENEME%20BONUSU%20VEREN%20SITELER%202024.png"
+        "bonuses": "",
+        "vips": ""
     },
     "vips": [
-        {
-            "name": "\ud83d\udcb8\ud83d\udca5 Sheratonbet \ud83d\udca5\ud83d\udcb8",
-            "url": "https://kazananadam.site/sitegit.asp?id=1225"
-        },
-        {
-            "name": "\u265b 3XLWIN \u265b",
-            "url": "https://kazananadam.site/sitegit.asp?id=1121"
-        },
-        {
-            "name": "\u2b50 Askbahis \u2b50",
-            "url": "https://kazananadam.site/sitegit.asp?id=1120"
-        },
-        {
-            "name": "\ud83e\udd47 Maksibet \ud83e\udd47",
-            "url": "https://kazananadam.site/sitegit.asp?id=1158"
-        },
-        {
-            "name": "\u269c\ufe0f \ud83c\udf81 Pa\u015fa casino \ud83c\udf81 \u269c\ufe0f",
-            "url": "https://kazananadam.site/sitegit.asp?id=1157"
-        },
-        {
-            "name": "\u00b0\u2022\u2b50 Rbet \u2b50\u00b0\u2022",
-            "url": "https://kazananadam.site/sitegit.asp?id=1156"
-        },
-        {
-            "name": "\ud80c\udda9\ud83d\udda4\ud80c\uddaa\ud83c\udf42 Mercurecasino \ud83c\udf42\ud80c\udda9\ud83d\udda4\ud80c\uddaa",
-            "url": "https://kazananadam.site/sitegit.asp?id=1154"
-        },
-        {
-            "name": "\ud83d\udcb8\ud83d\ude80 Favorislot \ud83d\ude80\ud83d\udcb8",
-            "url": "https://kazananadam.site/sitegit.asp?id=1155"
-        },
-        {
-            "name": "\ud83e\udd47\ud83d\ude80 B\u0130GBROG \ud83d\ude80\ud83e\udd47",
-            "url": "https://kazananadam.site/sitegit.asp?id=1217"
-        },
-        {
-            "name": "\ud83d\udca5\ud83c\udf83\ud83d\udd25 Casinogram \ud83d\udd25\ud83c\udf83\ud83d\udca5",
-            "url": "https://kazananadam.site/sitegit.asp?id=1207"
-        },
-        {
-            "name": "\ud80c\uddb0\u2655\ud80c\uddaa \ud83c\udf81 Bahisfair \ud83c\udf81 \ud80c\uddb0\u2655\ud80c\uddaa",
-            "url": "https://kazananadam.site/sitegit.asp?id=1188"
-        },
-        {
-            "name": "\u2b50\u2728 \ud83c\udf81 Betoonga \ud83c\udf81 \u2728\u2b50",
-            "url": "https://kazananadam.site/sitegit.asp?id=1118"
-        },
-        {
-            "name": "\ud83d\udd25 KazananAdam \ud83d\udd25",
-            "url": "https://kazananadam.site/sitegit.asp?id=1107"
-        },
-        {
-            "name": "\u269c\ufe0f\ud83d\udea8\ud80c\uddb0\u2655\ud80c\uddaa KazananAdam \ud80c\uddb0\u2655\ud80c\uddaa\ud83d\udea8\u269c\ufe0f",
-            "url": "https://kazananadam.site/sitegit.asp?id=1108"
-        }
+       
     ]
 }
